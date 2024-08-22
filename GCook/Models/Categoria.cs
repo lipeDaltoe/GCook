@@ -1,6 +1,5 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Runtime.Intrinsics.X86;
 
 namespace GCook.Models;
 
@@ -12,8 +11,10 @@ public class Categoria
 
     [Required]
     [StringLength(30)]
-    public string Nome { get; set;}
+    public string Nome { get; set; }
 
     [StringLength(300)]
     public string Foto { get; set; }
+
+    public bool ExibirHome { get; set; } = false;
 }
