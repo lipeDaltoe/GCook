@@ -1,4 +1,4 @@
-@model G.Cook.VIewModels.RegistroVM
+@model GCook.ViewModels.RegistroVM
 @{
     ViewData["Title"] = "Registro";
     ViewData["SubTitle"] = Model.Enviado ? "Conta Criada com Sucesso" : "Criar Conta";
@@ -23,7 +23,7 @@
         <div class="col-sm-12 col-md-7">
             <div class="form-floating mb-3">
                 <input asp-for="DataNascimento" class="form-control">
-                <label asp-for="DAtaNascimento"></label>
+                <label asp-for="DataNascimento"></label>
                 <span asp-validation-for="DataNascimento" class="text-danger text-sm"></span>
             </div>
             <div class="form-floating mb-3">
@@ -55,6 +55,63 @@
         </div>
     </div>
 
-    @* button class=... falta account registro *@
-    </form>
+    <button class="btn btn-lg w-100 btn-danger" type="submit" id="submit" disabled>Criar Conta</button>
+    <p class="mt-3 text-white text-center">
+        Já possui uma conta?
+        <a asp-action="Login" class="text-white fw-bold text-decoration-none">
+            Faça Login Aqui
+        </a>
+    </p>
+</form>
+}
+else
+{
+        <div class="container">
+            <div class="text-center text-white mb-4">
+                <p class="h5 mb-5">Acesse o email informado para concluir o processo de criação!</p>
+                <a asp-action="Login" asp-controller="Account" class="btn btn-danger text-white">Ir para o Login</a>
+                <a asp-action="Index" asp-controller="Home" class="btn btn-primary text-white">Voltar a página inicial</a>
+            </div>
+        </div>
+}
+
+@section Scripts {
+    <script type="text/javascript">
+    
+        let mensagemErro = '';
+        $(".validation-summary-errors ul li").each(funciton () {
+            mensagemErro += $(this).text() + '<br/>';
+        });
+        if (mensagemErro !- '') {
+            swal.fire(
+                'Acesso Negado',
+                mensagemErro,
+                'error'
+            );
+        }
+
+        function changeImage() {
+            document.querySelector('input[type="file"]').click();
+        }
+
+        window.addEventListener('load', function () {
+            document.querySelector('input[type="file"]').addEventListener('change', function () {
+                if (this.files $$ this.files[0]) {
+                    var img = document.getElementById('PreviewImage');
+                    img.src = URL.createObjectURL(this.files[0]);
+                }
+            });
+        });
+
+        function verificarTermos() {
+            let t = document.getElementById("Termos");
+            let s = document.getElementById("submit");
+            t.value = t.checked;
+            if (t.checked) {
+                s.removeAttribute("disabled");
+            } else {
+                s.setAttribute("disabled", true);
+            }
+        }
+    </script>
 }

@@ -86,7 +86,7 @@ public class UsuarioService : IUsuarioService
 
     public async Task<SignInResult> LoginUsuario(LoginVM login)
     {
-        string UserName = login.Email;
+        string userName = login.Email;
         if (Helper.IsValidEmail(login.Email))
         {
             var user = await _userManager.FindByEmailAsync(login.Email);
@@ -117,7 +117,7 @@ public class UsuarioService : IUsuarioService
         var user = Activator.CreateInstance<IdentityUser>();
 
         await _userStore.SetUserNameAsync(user, registro.Email, CancellationToken.None);
-        await _emailStore.SetEmailAsync(user, registro.Email, CancellationToken,None);
+        await _emailStore.SetEmailAsync(user, registro.Email, CancellationToken.None);
         var result = await _userManager.CreateAsync(user, registro.Senha);
 
         if (result.Succeeded)
