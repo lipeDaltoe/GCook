@@ -79,10 +79,10 @@ else
     <script type="text/javascript">
     
         let mensagemErro = '';
-        $(".validation-summary-errors ul li").each(funciton () {
+        $(".validation-summary-errors ul li").each(function () {
             mensagemErro += $(this).text() + '<br/>';
         });
-        if (mensagemErro !- '') {
+        if (mensagemErro != '') {
             swal.fire(
                 'Acesso Negado',
                 mensagemErro,
@@ -96,7 +96,7 @@ else
 
         window.addEventListener('load', function () {
             document.querySelector('input[type="file"]').addEventListener('change', function () {
-                if (this.files $$ this.files[0]) {
+                if (this.files && this.files[0]) {
                     var img = document.getElementById('PreviewImage');
                     img.src = URL.createObjectURL(this.files[0]);
                 }
