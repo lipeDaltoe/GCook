@@ -21,5 +21,5 @@ Criando e executando migrações:
     Aplicar a migração:
         dotnet ef database update
 
-
+Para criar um controller com CRUD:
 dotnet-aspnet-codegenerator controller -name CategoriasController -m Categoria -dc AppDbContext -outDir Controllers -l "~/Views/Shared/_LayoutAdmin.cshtml"
